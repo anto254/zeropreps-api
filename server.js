@@ -44,6 +44,7 @@ app.use('/blogs', require('./routes/blogRoutes'));
 app.use('/reviews', require('./routes/reviewRoutes'));
 app.use('/contacts', require('./routes/contactRoutes'));
 app.use('/support', require('./routes/supportRoutes'));
+app.use('/chat', require('./routes/chatRoutes'));
 
 
 
