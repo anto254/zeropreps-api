@@ -43,7 +43,24 @@ const getChatByClientId = async (req, res) => {
   const { clientId } = req.params;
 
   if (!clientId)
-    return res.status(400).json({ message: "order id is required" });
+    return res.status(400).json({ message: "client id is required" });
+
+  try {
+    const chat = await Chat.findOne({ clientId: clientId }).exec();
+    if (!chat) return res.status(200).json({ message: "No chat found" });
+
+    res.status(200).json(chat);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Something went wrong!!" });
+  }
+};
+
+const getChatByClientIdAdmin = async (req, res) => {
+  const { clientId } = req.params;
+
+  if (!clientId)
+    return res.status(400).json({ message: "client id is required" });
 
   try {
     const chat = await Chat.findOne({ clientId: clientId }).exec();
@@ -98,5 +115,7 @@ const countAdminUnread = async (req, res) => {
 module.exports = {
   addMessage,
   getChatByClientId,
-  getAllChats
+  getAllChats,
+  getChatByClientIdAdmin,
+  countAdminUnread
 };
