@@ -5,6 +5,7 @@ const chatController = require('../controllers/chatController')
 router
     .post('/', chatController.addMessage)
     .get('/:clientId', chatController.getChatByClientId)
+    .get('/admin/:clientId', chatController.getChatByClientIdAdmin)
     .get('/', chatController.getAllChats)
     .delete('/:chatId', chatController.deleteChat)
 
