@@ -10,7 +10,7 @@ const addMessage = async (req, res) => {
     let chat = await Chat.findOne({ clientId: clientId }).exec();
     if (!chat) {
       chat = new Chat({
-        clientId: orderId,
+        clientId: clientId,
         adminUnread: 1,
         messages: [
           {

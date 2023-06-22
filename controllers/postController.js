@@ -62,7 +62,6 @@ const getAllBlogs = asyncHandler(async (req, res) => {
   if (!blogs?.length) {
     return res.status(404).json({ message: "No blogs found" });
   }
- console.log(blogs);
   res.json({ blogs, count });
 });
 
