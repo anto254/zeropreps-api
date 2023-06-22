@@ -6,5 +6,6 @@ router
     .post('/', chatController.addMessage)
     .get('/:clientId', chatController.getChatByClientId)
     .get('/', chatController.getAllChats)
+    .delete('/:chatId', chatController.deleteChat)
 
 module.exports = router

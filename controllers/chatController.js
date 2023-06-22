@@ -82,7 +82,7 @@ const getAllChats = async (req, res) => {
     if (!chats.length)
       return res.status(200).json({ message: "No chat found" });
 
-    res.status(200).json(chat);
+    res.status(200).json(chats);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something went wrong!!" });
@@ -110,6 +110,20 @@ const countAdminUnread = async (req, res) => {
     }
   }
 
+  const deleteChat = async(req, res) => {
+    const {chatId} = req.params;
+    if(chatId) res.status(400).json({ message: 'Chat id is required' });
+
+    try {
+      await Chat.findByIdAndDelete(chatId);
+      res.status(200).json({message: "Chat deleted"});
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
 
 
 module.exports = {
@@ -117,5 +131,6 @@ module.exports = {
   getChatByClientId,
   getAllChats,
   getChatByClientIdAdmin,
-  countAdminUnread
+  countAdminUnread,
+  deleteChat
 };
