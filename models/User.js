@@ -14,6 +14,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  refreshToken: String
 });
 
 const UserModel = model("User", UserSchema);
