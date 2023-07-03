@@ -7,6 +7,7 @@ router
     .get('/:clientId', chatController.getChatByClientId)
     .get('/admin/:clientId', chatController.getChatByClientIdAdmin)
     .get('/', chatController.getAllChats)
+    .get('/unread-count', chatController.countAdminUnread)
     .delete('/:chatId', chatController.deleteChat)
 
 module.exports = router
