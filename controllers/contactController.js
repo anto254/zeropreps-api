@@ -1,4 +1,6 @@
 const Contact = require('../models/Contact');
+const sendSms = require("../utils/sms");
+
 
 const createContact = async(req, res) => {
     const {email, title, message} = req.body;
@@ -10,6 +12,8 @@ const createContact = async(req, res) => {
     const contact = await Contact.create(contactObject);
 
     if(contact) {
+      sendSms.sendAnSms("254768702540", "You have a new message." )
+
         return res.status(201).json({message: "Your query has been sent"});
     }
     else{

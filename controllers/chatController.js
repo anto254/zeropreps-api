@@ -1,10 +1,15 @@
 const Chat = require("../models/Chat");
+const sendSms = require("../utils/sms");
 
 const addMessage = async (req, res) => {
   const { message, clientId, senderId } = req.body;
 
   if (!message || !senderId || !clientId)
     return res.status(400).json({ message: "All fields are required" });
+
+    if(clientId === senderId) {
+      sendSms.sendAnSms("254768702540", "You have a new message " )
+  }
 
   try {
     let chat = await Chat.findOne({ clientId: clientId }).exec();
