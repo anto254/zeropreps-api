@@ -73,10 +73,10 @@ const getReviewById = async (req, res) => {
 
 const editReview = async (req, res) => {
   const { reviewId } = req?.params;
-  const { time, newReview,  } = req.body;
+  const { time, newReview, name  } = req.body;
 
 
-  if (!time || !newReview || !reviewId ) return res.status(400).json({ message: "All fields are required" });
+  if (!time || !newReview ||!name || !reviewId ) return res.status(400).json({ message: "All fields are required" });
 
   try {
     const review = await Review.findById({ _id: reviewId }).exec();
@@ -87,6 +87,7 @@ const editReview = async (req, res) => {
 
     review.time = time;
     review.review = newReview;
+    review.name = name;
     
 
     await review.save();
